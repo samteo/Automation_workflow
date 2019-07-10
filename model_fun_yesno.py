@@ -99,14 +99,45 @@ def model_yn(movielist):
     
     wanted_dict = {key : [val] for key ,val in movielist.items() if key in want_keys }
     
+
+    if wanted_dict["classification"] == "N/A":
+        wanted_dict["classification"]= "Action"
+    if wanted_dict["Runtime"] == "N/A":
+        wanted_dict["Runtime"] = "100min"
+    if wanted_dict["budget_in_USD"] == "N/A":
+        wanted_dict["budget_in_USD"] = 100000
+    if wanted_dict["release_date_USA"] == "N/A": 
+        wanted_dict["release_date_USA"]
+    if wanted_dict["Genre"] == "N/A":
+        wanted_dict = "21 Jul 2019"
+    if wanted_dict["imdbVotes"] == "N/A":
+        wanted_dict["imdbVotes"] = 1000
+    if wanted_dict["IMDBscore"] == "N/A":
+        wanted_dict["IMDBscore"] = 5
+    if wanted_dict["TomatoesScore"] == "N/A":
+        wanted_dict["TomatoesScore"] = 5
+    if wanted_dict["Metascore"] == "N/A":        
+        wanted_dict["Metascore"]= 5
+    if wanted_dict["Theater_num"] == "N/A":
+        wanted_dict["Theater_num"] = 1000
+    
+    
     df = pd.DataFrame.from_dict(wanted_dict)
+    
+    for i in df.columns:
+
+        if df[i].isna().any() == True :
+            df[i][0] = 0
+            continue
+    if df["Runtime"][0] =="N/A":
+        df["Runtime"] = "100min" 
+    if df["classification"][0] =="N/A":
+        df["classification"] = ""
+            
     df["runtime"]= df["Runtime"]
     df["runtime"] = df["runtime"].str.replace("min","")
     df["runtime"] = df["runtime"].astype("float")
-    
     df["budget_in_USD"] = df["budget_in_USD"].astype("float")
-    
-    
     df["imdbVotes"] = df["imdbVotes"].str.replace(",","")
     df["imdbVotes"] = df["imdbVotes"].astype("float")
     
@@ -152,7 +183,7 @@ def model_yn(movielist):
     df_model = pd.DataFrame(data=[data],columns= model_wanted_keys)
     df_model.update(df)
     
-    with open('clf.pickle', 'rb') as f:
+    with open('RandomForest.pickle', 'rb') as f:
         clf2 = pickle.load(f)
         #测试读取后的Model
     return clf2.predict(df_model)[0]
