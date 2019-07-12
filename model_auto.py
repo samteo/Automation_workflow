@@ -158,7 +158,7 @@ def predict_loss(m):
     cleaned = cleaned.apply(lambda x:x.replace(" ",""))
     country_enc = pd.get_dummies(cleaned, prefix='L').groupby(level=0,sort=False).sum()   
         
-    df["Runtime"] = df["Runtime"].str.replace("min","").str.replace()
+    df["Runtime"] = df["Runtime"].str.replace("min","")
     df["imdbVotes"]=df["imdbVotes"].str.replace(",","")
     for e in df.columns:
         if "movie" or "Actor" in e:
