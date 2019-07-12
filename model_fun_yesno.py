@@ -29,8 +29,8 @@ def model_yn(movielist):
     want_keys={
             'classification', 'Runtime', 'budget_in_USD', 'gross_na',
            'release_date_USA', 'Genre', 'imdbVotes', 'IMDBscore', 'TomatoesScore',
-           'Metascore', 'Theater_num', 'movie_3_before', 'movie_2_before',
-           'movie_1_before', 'movie_0_before', 'Actor_3_before', 'Actor_2_before',
+           'Metascore', 'Theater_num', 'movie_2_before',
+           'movie_1_before', 'movie_0_before', 'Actor_2_before',
            'Actor_1_before', 'Actor_0_before'}
 
     wanted_dict = {key : [val] for key ,val in movielist.items() if key in want_keys }   
@@ -62,11 +62,11 @@ def model_yn(movielist):
     #df["Cmovie_2_before"] = df["Cmovie_2_before"].astype("str").replace("error","0").astype("float")
     #df["Cmovie_1_before"] = df["Cmovie_1_before"].astype("str").replace("error","0").astype("float")
     #df["Cmovie_0_before"] = df["Cmovie_0_before"].astype("str").replace("error","0").astype("float")
-    df["movie_3_before"] = df["movie_3_before"].astype("str").replace("error","0").astype("float")
+#    df["movie_3_before"] = df["movie_3_before"].astype("str").replace("error","0").astype("float")
     df["movie_2_before"] = df["movie_2_before"].astype("str").replace("error","0").astype("float")
     df["movie_1_before"] = df["movie_1_before"].astype("str").replace("error","0").astype("float")
     df["movie_0_before"] = df["movie_0_before"].astype("str").replace("error","0").astype("float")
-    df["Actor_3_before"] = df["Actor_3_before"].astype("str").replace("error","0").astype("float")
+#    df["Actor_3_before"] = df["Actor_3_before"].astype("str").replace("error","0").astype("float")
     df["Actor_2_before"] = df["Actor_2_before"].astype("str").replace("error","0").astype("float")
     df["Actor_1_before"] = df["Actor_1_before"].astype("str").replace("error","0").astype("float")
     df["Actor_0_before"] = df["Actor_0_before"].astype("str").replace("error","0").astype("float")
@@ -83,8 +83,8 @@ def model_yn(movielist):
     
     model_wanted_keys=[
             'runtime', 'budget_in_USD', 'imdbVotes', 'IMDBscore', 'TomatoesScore',
-           'Metascore', 'Theater_num', 'movie_3_before', 'movie_2_before',
-           'movie_1_before', 'movie_0_before', 'Actor_3_before', 'Actor_2_before',
+           'Metascore', 'Theater_num', 'movie_2_before',
+           'movie_1_before', 'movie_0_before', 'Actor_2_before',
            'Actor_1_before', 'Actor_0_before', 'G', 'NC-17', 'NotRated', 'PG',
            'PG-13', 'R', 'TV-14', 'TV-G', 'TV-MA', 'TV-PG', 'TV-Y', 'TV-Y7',
            'TV-Y7-FV', 'Unrated', 'Apr', 'Aug', 'Dec', 'Feb', 'Jan', 'Jul', 'Jun',
