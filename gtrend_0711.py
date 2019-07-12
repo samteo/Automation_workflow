@@ -4,8 +4,37 @@ import random
 import json
 import pandas as pd
 import numpy as np
+import csv
 
-
+def rp_do(ip_count,proxy,kw_list,timeframe):    
+    print("使用第",ip_count,"組IP:",proxy[ip_count])
+    try:
+        
+        global pytrend
+        pytrend = TrendReq(tz=360, proxies=proxy[ip_count])
+        pytrend.build_payload(kw_list=kw_list,cat=34,timeframe=timeframe,geo="US",gprop="")  #搜尋使用的參數,其中cat=34 為電影類別
+        global right_ip_count
+        right_ip_count=ip_count
+    except :     
+        #time.sleep(random.randint(3,5))
+        ip_count+=1
+        print("被斷,換第",ip_count,"組ip:",proxy[ip_count])
+        rp_do(ip_count,proxy,kw_list,timeframe)
+        
+        
+def open_ip_list(filename,op=0):
+    op_ip_list = []
+    ip_count=0
+    with open(filename, "r", encoding="utf-8")as op_f:
+        
+        ipdata =csv.reader(op_f)
+        for ip in ipdata:
+            if ip_count<op:
+                ip_count+=1
+                continue
+            op_ip_list.append(ip)
+    op_f.close()
+    return op_ip_list
 
 def month(m):
     mon={
@@ -16,7 +45,7 @@ def month(m):
 
 
 
-def g_trend_movie(movie,release_date):
+def g_trend_movie(movie,release_date,proxy):
     s_movie=movie
     if "," in movie:          #Gooletrends不可使用"，" 分隔 所以將名稱有"，"的取代成空白
         s_movie = movie.replace(",", " ")
@@ -33,10 +62,11 @@ def g_trend_movie(movie,release_date):
     next_year=int(release_year)+1
     timeframe = str(front_year) + "-01-01 " + str(next_year) + "-12-31"
     
-    pytrend = TrendReq(tz=360)
+    print(movie)
     kw_list=[s_movie]
-    pytrend.build_payload(kw_list=kw_list,cat=34,timeframe=timeframe,geo="US",gprop="")  #搜尋使用的參數,其中cat=34 為電影類別
-    
+   
+    rp_do(right_ip_count,proxy,kw_list=kw_list,timeframe=timeframe)
+   # pytrend.build_payload(kw_list=kw_list,cat=34,timeframe=timeframe,geo="US",gprop="")   
     moviedata = pytrend.interest_over_time().get(kw_list)
     try:
         moviedata.rename(columns={moviedata.columns[0]: "Count" }, inplace=True)                   
@@ -94,7 +124,7 @@ def g_trend_movie(movie,release_date):
     output_df=output_df.to_dict(orient='records')
     return output_df
 
-def g_trend_actor(actor,release_date):
+def g_trend_actor(actor,release_date,proxy):
     actor_alist=actor.split(",")
         
     release_year=int(release_date.split(" ")[-1])  
@@ -104,15 +134,16 @@ def g_trend_actor(actor,release_date):
     
     timeframe=["2004-01-01 2007-12-31","2008-01-01 2011-12-31","2012-01-01 2015-12-31","2016-01-01 2019-12-31"]
     output_total= np.array([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
+    
     for actor in actor_alist:
         actordata_list=[]
         for t in timeframe:
-            time.sleep(random.randint(3,5))
-            #print(actor,t)
-            pytrend = TrendReq(tz=360)
+            #time.sleep(random.randint(5,8))
+            print(actor,t)
+           
             kw_list=[actor]
-            pytrend.build_payload(kw_list=kw_list,cat=34,timeframe=t,geo="US",gprop="")  #搜尋使用的參數,其中cat=34 為電影類別
-            
+            rp_do(right_ip_count,proxy,kw_list=kw_list,timeframe=t)
+            #pytrend.build_payload(kw_list=kw_list,cat=34,timeframe=timeframe,geo="US",gprop="")
             actordata = pytrend.interest_over_time().get(kw_list)
             try:
                 actordata.rename(columns={actordata.columns[0]: "Count" }, inplace=True)
@@ -174,8 +205,13 @@ def g_trend_actor(actor,release_date):
     return output_avg
 
 def trends(input_json):
+    proxy=open_ip_list("proxy4.csv",op=0)
     i=1
+    proxy=proxy
     output=[]
+    global right_ip_count
+    right_ip_count=0
+    
     for m in input_json:
         #m=input_data[1]
         try: 
@@ -190,8 +226,9 @@ def trends(input_json):
 #                else:
 #                    outfile.write(","+json.dumps(m,ensure_ascii= False) + "\n")
             continue
-        col_movie=g_trend_movie(movie,release_date)
-        col_actor=g_trend_actor(actor,release_date)
+        
+        col_movie=g_trend_movie(movie,release_date,proxy)
+        col_actor=g_trend_actor(actor,release_date,proxy)
         m=dict(m,**col_movie[0])
         m=dict(m,**col_actor[0])
         output.append(m)
@@ -207,4 +244,20 @@ def trends(input_json):
 #    outfile.close()
     i+=1
     return output
- 
+if __name__=="__main__":     
+    with open("aaaddd.json","r",encoding="utf-8") as op_f:
+        input_data=json.load(op_f)
+    op_f.close()
+    test=trends(input_data)
+    
+    #pytrend.build_payload(kw_list=["WQJOEHSLDHISODQWDHWQDWQI"],cat=34,timeframe="2019-05-01 2019-05-08",geo="US",gprop="")
+
+
+
+
+
+
+
+        
+        
+    
