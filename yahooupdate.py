@@ -109,6 +109,7 @@ def update_movie_OMDB(IMDB_number="tt0446029", apikey="5ab10f1c"):
 
     info = json.load(response)
     info['plot'] = Plot_to_story(info['imdbID'])
+    info['year'] = info['year'].replace('-','')
     json.dumps(info)
 
     return info
