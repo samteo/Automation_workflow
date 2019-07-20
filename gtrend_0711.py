@@ -6,16 +6,15 @@ import pandas as pd
 import numpy as np
 import csv
 
-def rp_do(ip_count,proxy,kw_list,timeframe):    
+def rp_do(ip_count,proxy,kw_list,timeframe,):    
     print("使用第",ip_count,"組IP:",proxy[ip_count])
-    try:
-        
+    try:      
         global pytrend
         pytrend = TrendReq(tz=360, proxies=proxy[ip_count])
         pytrend.build_payload(kw_list=kw_list,cat=34,timeframe=timeframe,geo="US",gprop="")  #搜尋使用的參數,其中cat=34 為電影類別
         global right_ip_count
         right_ip_count=ip_count
-    except :     
+    except Exception:     
         #time.sleep(random.randint(3,5))
         ip_count+=1
         print("被斷,換第",ip_count,"組ip:",proxy[ip_count])
@@ -131,8 +130,8 @@ def g_trend_actor(actor,release_date,proxy):
     release_mon=release_date.split(" ")[1]
     release_mon=month(release_mon)
     release_day=int(release_date.split(" ")[0])
-    
-    timeframe=["2004-01-01 2007-12-31","2008-01-01 2011-12-31","2012-01-01 2015-12-31","2016-01-01 2019-12-31"]
+    timeframe=["2016-01-01 2019-12-31"]
+    #timeframe=["2004-01-01 2007-12-31","2008-01-01 2011-12-31","2012-01-01 2015-12-31","2016-01-01 2019-12-31"]
     output_total= np.array([0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0])
     
     for actor in actor_alist:
@@ -226,9 +225,43 @@ def trends(input_json):
 #                else:
 #                    outfile.write(","+json.dumps(m,ensure_ascii= False) + "\n")
             continue
-        
-        col_movie=g_trend_movie(movie,release_date,proxy)
-        col_actor=g_trend_actor(actor,release_date,proxy)
+        if int(release_date.split(" ")[-1]) > 2004:
+            col_movie=g_trend_movie(movie,release_date,proxy)
+            col_actor=g_trend_actor(actor,release_date,proxy)
+            
+        else:
+            output_list=[0,0,0,0,0,
+                         0,0,0,0,0,
+                         0,0,0,0,0,
+                         0,0]
+                    
+            output_df=pd.DataFrame([output_list])
+                    
+            j=8
+            for i in range(0,9,1):    
+                output_df=output_df.rename(columns={i:"movie_"+str(j)+"_before"})
+                j-=1
+            j=1
+            for i in range(9,17,1):    
+                output_df=output_df.rename(columns={i:"movie_"+str(j)+"_after"})
+                j+=1
+            col_movie=output_df.to_dict(orient='records')
+            
+            output_list=[0,0,0,0,0,
+                         0,0,0,0,0,
+                         0,0,0,0,0,
+                         0,0]
+                    
+            output_df=pd.DataFrame([output_list])
+            j=8
+            for i in range(0,9,1):    
+                output_df=output_df.rename(columns={i:"Actor_"+str(j)+"_before"})
+                j-=1
+            j=1
+            for i in range(9,17,1):    
+                output_df=output_df.rename(columns={i:"Actor_"+str(j)+"_after"})
+                j+=1
+            col_actor=output_df.to_dict(orient='records')
         m=dict(m,**col_movie[0])
         m=dict(m,**col_actor[0])
         output.append(m)
@@ -245,11 +278,11 @@ def trends(input_json):
     i+=1
     return output
 if __name__=="__main__":     
-    with open("aaaddd.json","r",encoding="utf-8") as op_f:
-        input_data=json.load(op_f)
-    op_f.close()
-    test=trends(input_data)
-    
+#    with open("aaaddd.json","r",encoding="utf-8") as op_f:
+#        input_data=json.load(op_f)
+#    op_f.close()
+#    test=trends(input_data)
+    m_dict=trends(m_dict[6:7])
     #pytrend.build_payload(kw_list=["WQJOEHSLDHISODQWDHWQDWQI"],cat=34,timeframe="2019-05-01 2019-05-08",geo="US",gprop="")
 
 

@@ -27,7 +27,7 @@ def model_yn(movielist):
     
 
     want_keys={
-            'classification', 'Runtime', 'budget_in_USD', 'gross_na',
+            'classification', 'Runtime', 'budget_in_USD', 
            'release_date_USA', 'Genre', 'imdbVotes', 'IMDBscore', 'TomatoesScore',
            'Metascore', 'Theater_num', 'movie_2_before',
            'movie_1_before', 'movie_0_before', 'Actor_2_before',

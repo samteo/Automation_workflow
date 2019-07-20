@@ -156,8 +156,13 @@ def predict_loss(m):
     
     cleaned = df.Country.str.split(',', expand=True).stack()
     cleaned = cleaned.apply(lambda x:x.replace(" ",""))
-    country_enc = pd.get_dummies(cleaned, prefix='L').groupby(level=0,sort=False).sum()   
-        
+    country_enc = pd.get_dummies(cleaned, prefix='L').groupby(level=0,sort=False).sum()
+    try:
+        df["budget_in_USD"] = df["budget_in_USD"].str.replace("$","").str.replace(",","")
+    except:
+        pass
+    if  pd.isnull(df["budget_in_USD"]).any():
+        df["budget_in_USD"] = 5000000   
     df["Runtime"] = df["Runtime"].str.replace("min","")
     df["imdbVotes"]=df["imdbVotes"].str.replace(",","")
     for e in df.columns:
@@ -283,7 +288,12 @@ def predict_gain(m):
     cleaned = df.Country.str.split(',', expand=True).stack()
     cleaned = cleaned.apply(lambda x:x.replace(" ",""))
     country_enc = pd.get_dummies(cleaned, prefix='L').groupby(level=0,sort=False).sum()   
-        
+    try:
+        df["budget_in_USD"] = df["budget_in_USD"].str.replace("$","").str.replace(",","")
+    except:
+        pass
+    if  pd.isnull(df["budget_in_USD"]).any():
+        df["budget_in_USD"] = 5000000   
     df["Runtime"] = df["Runtime"].str.replace("min","")
     df["imdbVotes"]=df["imdbVotes"].str.replace(",","")
     for e in df.columns:

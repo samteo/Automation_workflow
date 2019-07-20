@@ -7,17 +7,17 @@ Created on Wed Jul  3 19:59:46 2019
 
 from yahooupdate import start_clawer_new_movie
 from theater_func import theater_num
-from gtrend_0701 import trends
+from gtrend_0711 import trends
 from model_auto import predict_loss,predict_gain
 from model_fun_yesno import model_yn
 import numpy as np
 
 m_dict = start_clawer_new_movie()
-m_dict = trends(m_dict[3:5])
+m_dict = trends(m_dict)
 
-for m in m_dict[0:2]:#先跑三個
-    m_dict = theater_num(m,m_dict) #此階段回傳新的m_dict(加了theater_num,Domestic_box_office,International_box_office,Worldwide Box Office,moive_name_thenumbers,budget_in_USD)
-for m in m_dict[0:2]:
+for m in m_dict:#先跑三個
+    theater_num(m,m_dict) #此階段回傳新的m_dict(加了theater_num,Domestic_box_office,International_box_office,Worldwide Box Office,moive_name_thenumbers,budget_in_USD)
+
     if m["Runtime"] == "N/A":
         m["Runtime"]="100"
 #    if np.isnan(m["budget_in_USD"]):
