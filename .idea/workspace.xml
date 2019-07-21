@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8a97d717-2a3f-4feb-94c8-1aea7901e55c" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/update_list.csv" beforeDir="false" afterPath="$PROJECT_DIR$/update_list.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yahooupdate.py" beforeDir="false" afterPath="$PROJECT_DIR$/yahooupdate.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -16,13 +16,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/yahooupdate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
-              <caret line="374" column="27" lean-forward="true" selection-start-line="374" selection-start-column="27" selection-end-line="374" selection-end-column="27" />
+            <state relative-caret-position="300">
+              <caret line="371" column="24" lean-forward="true" selection-start-line="371" selection-start-column="24" selection-end-line="371" selection-end-column="24" />
               <folding>
                 <element signature="e#0#11#0" expanded="true" />
                 <element signature="e#424#2354#0" />
                 <element signature="e#2385#4023#0" />
-                <element signature="e#4066#4381#0" />
+                <element signature="e#4459#4747#0" />
                 <element signature="e#5616#13113#0" />
                 <element signature="e#13148#14042#0" />
               </folding>
@@ -35,6 +35,9 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>update_movie_OMDB</find>
+      <find>with</find>
+      <find>final</find>
+      <find>movie_name_imdbID</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -88,6 +91,34 @@
       </list>
     </option>
   </component>
+  <component name="RunManager">
+    <configuration name="yahooupdate" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="Automation_workflow" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/yahooupdate.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Python.yahooupdate" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -103,14 +134,13 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="261" y="86" width="1551" height="875" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24983476" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.101123594" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.37651822" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -118,7 +148,7 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
-      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.32928476" />
+      <window_info active="true" anchor="bottom" id="Python Console" order="10" visible="true" weight="0.25775978" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -132,15 +162,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/update_list.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-5603">
+          <caret column="820" selection-start-column="820" selection-end-column="820" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/yahooupdate.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
-          <caret line="374" column="27" lean-forward="true" selection-start-line="374" selection-start-column="27" selection-end-line="374" selection-end-column="27" />
+        <state relative-caret-position="300">
+          <caret line="371" column="24" lean-forward="true" selection-start-line="371" selection-start-column="24" selection-end-line="371" selection-end-column="24" />
           <folding>
             <element signature="e#0#11#0" expanded="true" />
             <element signature="e#424#2354#0" />
             <element signature="e#2385#4023#0" />
-            <element signature="e#4066#4381#0" />
+            <element signature="e#4459#4747#0" />
             <element signature="e#5616#13113#0" />
             <element signature="e#13148#14042#0" />
           </folding>

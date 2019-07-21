@@ -110,12 +110,12 @@ def update_movie_OMDB(IMDB_number="tt0446029", apikey="10b4eea7"):
 
     info = json.load(response)
     info['plot'] = Plot_to_story(info['imdbID'])
-    info['year'] = re.findall(r'^[0-9]*', info['year'])
+    info['Year'] = re.findall(r'^[0-9]*', info['Year'])
     json.dumps(info)
 
     return info
 
-def run_movie():
+def run_movie(end_page=10):
     update_list = []
     MovieInfoList = []
 #yahoo this week
@@ -123,7 +123,7 @@ def run_movie():
         thisweek = yahoo_thisweek(p=j)
         update_list += thisweek
 # yahoo到第幾頁
-    for i in range(1, 3):
+    for i in range(1, end_page+1):
         a = yahoo_new_movie_list(p=i)
         update_list += a
 
@@ -135,15 +135,13 @@ def run_movie():
         # english_name = english_name.split(":")[0]
         try:
             IMDB_number = movie_name_imdbID(english_name=english_name)
-            try:
-                movie_json = update_movie_OMDB(IMDB_number=IMDB_number)
-            except:
-                movie_json = update_movie_OMDB(IMDB_number=IMDB_number,apikey="5ab10f1c")
-            if movie_json != "":
-                movie_json.update(j)
-            else:
-                continue
+
+            movie_json = update_movie_OMDB(IMDB_number=IMDB_number)
         except:
+            continue
+        if movie_json != "":
+            movie_json.update(j)
+        else:
             continue
         MovieInfoList.append(movie_json)
     return MovieInfoList
@@ -360,9 +358,9 @@ def Plot_to_story(ID):
     story_str = repr(story.text).split("\\n")[2].replace("   ","")
     return story_str
 
-def start_clawer_new_movie():
+def start_clawer_new_movie(end_page=11):
     starttime = datetime.datetime.now()
-    data = run_movie()
+    data = run_movie(end_page=end_page)
     print("run_movie()花費:",datetime.datetime.now()-starttime)
     all_data = update(data)
     print("update()花費:",datetime.datetime.now()-starttime)
@@ -373,7 +371,8 @@ def start_clawer_new_movie():
 
 if __name__=="__main__":
     #all_new_movie為最後output
-    all_new_movie = start_clawer_new_movie()
+    #end_page可以設定要抓到第幾頁 e.g. end_page= 1 會抓兩頁本周上映 + 一頁上映中的電影
+    all_new_movie = start_clawer_new_movie(end_page=11)
 
 
 
