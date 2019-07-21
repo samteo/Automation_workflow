@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8a97d717-2a3f-4feb-94c8-1aea7901e55c" name="Default Changelist" comment="" />
+    <list default="true" id="8a97d717-2a3f-4feb-94c8-1aea7901e55c" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/update_list.csv" beforeDir="false" afterPath="$PROJECT_DIR$/update_list.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yahooupdate.py" beforeDir="false" afterPath="$PROJECT_DIR$/yahooupdate.py" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -11,12 +14,17 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/prototype.py">
+        <entry file="file://$PROJECT_DIR$/yahooupdate.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="15" column="23" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+            <state relative-caret-position="363">
+              <caret line="374" column="27" lean-forward="true" selection-start-line="374" selection-start-column="27" selection-end-line="374" selection-end-column="27" />
               <folding>
-                <element signature="e#88#134#0" expanded="true" />
+                <element signature="e#0#11#0" expanded="true" />
+                <element signature="e#424#2354#0" />
+                <element signature="e#2385#4023#0" />
+                <element signature="e#4066#4381#0" />
+                <element signature="e#5616#13113#0" />
+                <element signature="e#13148#14042#0" />
               </folding>
             </state>
           </provider>
@@ -24,12 +32,24 @@
       </file>
     </leaf>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>update_movie_OMDB</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
-    <option name="x" value="224" />
-    <option name="y" value="36" />
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/yahooupdate.py" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds">
+    <option name="x" value="261" />
+    <option name="y" value="86" />
     <option name="width" value="1551" />
     <option name="height" value="875" />
   </component>
@@ -82,7 +102,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="224" y="36" width="1551" height="875" extended-state="0" />
+    <frame x="261" y="86" width="1551" height="875" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24983476" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
@@ -106,10 +127,22 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/prototype.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="15" column="23" selection-start-line="15" selection-start-column="23" selection-end-line="15" selection-end-column="23" />
+        <state relative-caret-position="300">
+          <caret line="17" column="21" lean-forward="true" selection-start-line="17" selection-start-column="21" selection-end-line="17" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yahooupdate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="363">
+          <caret line="374" column="27" lean-forward="true" selection-start-line="374" selection-start-column="27" selection-end-line="374" selection-end-column="27" />
           <folding>
-            <element signature="e#88#134#0" expanded="true" />
+            <element signature="e#0#11#0" expanded="true" />
+            <element signature="e#424#2354#0" />
+            <element signature="e#2385#4023#0" />
+            <element signature="e#4066#4381#0" />
+            <element signature="e#5616#13113#0" />
+            <element signature="e#13148#14042#0" />
           </folding>
         </state>
       </provider>

@@ -103,13 +103,14 @@ def movie_name_imdbID(english_name):
     IMDB_number = movie.find("a").get("href").split('/')[2]
     return IMDB_number
 
-def update_movie_OMDB(IMDB_number="tt0446029", apikey="5ab10f1c"):
-    url = "http://www.omdbapi.com/?i=" + IMDB_number + "&apikey=" + apikey  # 5ab10f1c(免費)
+def update_movie_OMDB(IMDB_number="tt0446029", apikey="10b4eea7"):
+    import re
+    url = "http://www.omdbapi.com/?i=" + IMDB_number + "&apikey=" + apikey  # 5ab10f1c(免費) 10b4eea7
     response = urlopen(url)
 
     info = json.load(response)
     info['plot'] = Plot_to_story(info['imdbID'])
-    info['year'] = info['year'].replace('-','')
+    info['year'] = re.findall(r'^[0-9]*', info['year'])
     json.dumps(info)
 
     return info
@@ -126,15 +127,18 @@ def run_movie():
         a = yahoo_new_movie_list(p=i)
         update_list += a
 
-    with open("update_list.csv", "w", encoding="utf-8") as f:
-        writer = csv.writer(f)
-        writer.writerow(update_list)
+    # with open("update_list.csv", "w", encoding="utf-8") as f:
+    #     writer = csv.writer(f)
+    #     writer.writerow(update_list)
     for j in update_list:
         english_name = j['yahoo_english_name']
         # english_name = english_name.split(":")[0]
         try:
             IMDB_number = movie_name_imdbID(english_name=english_name)
-            movie_json = update_movie_OMDB(IMDB_number=IMDB_number)
+            try:
+                movie_json = update_movie_OMDB(IMDB_number=IMDB_number)
+            except:
+                movie_json = update_movie_OMDB(IMDB_number=IMDB_number,apikey="5ab10f1c")
             if movie_json != "":
                 movie_json.update(j)
             else:
@@ -363,16 +367,9 @@ def start_clawer_new_movie():
     all_data = update(data)
     print("update()花費:",datetime.datetime.now()-starttime)
 
-
-
     # with open("update_movie_yahoo1.json", "w", encoding="utf-8")as final:
     #     json.dumps(all_data, final)
     return all_data
-
-
-
-
-
 
 if __name__=="__main__":
     #all_new_movie為最後output
