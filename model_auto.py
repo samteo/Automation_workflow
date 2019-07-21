@@ -238,7 +238,8 @@ def predict_loss(m):
     y_pred = loaded_model.predict(df_model)
     y_pred = np.exp(y_pred)
     print("Prediction (loss)=",y_pred[0])
-    m["Predict"]= y_pred[0]
+    m["Predict"]= float(y_pred[0])
+    m['Make_money']=0
     return m
 
 def predict_gain(m):
@@ -372,7 +373,8 @@ def predict_gain(m):
     y_pred = loaded_model.predict(df_model)
     y_pred = np.exp(y_pred)
     print("Prediction (gain)=",y_pred[0])
-    m["Predict"]= y_pred[0]
+    m["Predict"]= float(y_pred[0])
+    m['Make_money']=1
     return m
 
 if __name__ == "__main__":
